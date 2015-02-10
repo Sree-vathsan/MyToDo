@@ -26,14 +26,8 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.listen(8080);
 console.log("App listening on port 8080");
 
-
-//Get ToDo Schema
-// define model =================
-var Todo = mongoose.model('Todo', {
-  completed: Boolean,
-  note: String,
-  updated_at: { type: Date, default: Date.now }
-});
+//Get the Schema
+var Todo = require('./models/ToDo.js');
 
 
 // routes ======================================================================
