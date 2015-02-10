@@ -3,6 +3,7 @@
 *https://scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular 
 *http://adrianmejia.com/
 **/
+
 //server.js
 
 var mongoose = require('mongoose');
@@ -22,17 +23,21 @@ app.use(bodyParser.json());                                     // parse applica
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 //app.use(methodOverride());
 
-// listen (start app with node server.js) ======================================
+// listen (start app with node server.js)
 app.listen(8080);
 console.log("App listening on port 8080");
 
 //Get the Schema
 var Todo = require('./models/ToDo.js');
 
+// application 
+    app.get('*', function(req, res) {
+        res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+    });
 
-// routes ======================================================================
+// routes
 
-    // api ---------------------------------------------------------------------
+    // api 
     // get all todos
     app.get('/api/todos', function(req, res) {
 
