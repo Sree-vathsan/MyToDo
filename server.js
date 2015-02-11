@@ -53,7 +53,7 @@ var Todo = require('./models/ToDo.js');
 
         // create a todo, information comes from AJAX request from Angular
         Todo.create({
-            note : req.body.text,
+            note : req.body.note,
             completed : false
         }, function(err, todo) {
             if (err)
