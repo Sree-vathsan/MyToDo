@@ -30,13 +30,9 @@ console.log("App listening on port 8080");
 //Get the Schema
 var Todo = require('./models/ToDo.js');
 
-// application 
-    app.get('*', function(req, res) {
-        res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-    });
 
 // routes
-
+    
     // api 
     // get all todos
     app.get('/api/todos', function(req, res) {
@@ -70,7 +66,6 @@ var Todo = require('./models/ToDo.js');
                 res.json(todos);
             });
         });
-
     });
 
     //update todo
@@ -97,3 +92,8 @@ var Todo = require('./models/ToDo.js');
 	        });
         });
     });
+
+    // application 
+app.get('*', function(req, res) {
+    res.sendfile('./public/index-ng.html'); // load the single view file (angular will handle the page changes on the front-end)
+});
