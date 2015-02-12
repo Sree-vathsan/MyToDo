@@ -12,7 +12,6 @@ function mainController($scope, $http) {
         });
      // when submitting the add form, send the note to the node API
     $scope.createTodo = function() {
-        console.log($scope.formData);
         $http.post('/api/todos', $scope.formData)
             .success(function(data) {
                 $scope.formData = {}; // clear the form so our user is ready to enter another
@@ -23,6 +22,19 @@ function mainController($scope, $http) {
                 console.log('Error: ' + data);
             });
     };
+    //Update Note
+    $scope.updateCompletedTodo = function(todoInstance){
+        console.log(todoInstance.completed);
+        
+        $http.put('/api/todos/' + todoInstance._id,todoInstance)
+            .success(function(data) {
+                $scope.todos = data;
+                console.log(data);
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });  
+    }
 
     // Perform deletion of note
     $scope.deleteTodo = function(id) {

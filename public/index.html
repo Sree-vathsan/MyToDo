@@ -3,12 +3,13 @@
 <head>
 	<!-- META -->
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>MyToDo</title>
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 	<style type="text/css">
-		.container{
-			margin-top: 10%;
+		body{
+			padding-top: 80px;
 		}
 	</style>
 	<!-- SPELLS -->
@@ -18,7 +19,7 @@
 
 </head>
 <body ng-controller="mainController">
-	<div class="header">
+	<!--<div class="header">-->
 	    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container-fluid">
 				 	<div class="col-sm-8">	
@@ -37,23 +38,23 @@
 					</div>
 			</div>
 		</nav>
-	</div>
+	<!--</div>-->
 
-	<div class="container col-sm-12">
+	<div class="container-fluid main-content">
 		<div class="panel panel-default">
 		  <div class="panel-body">
 		    <div class="col-lg-12">
 		    	<form>
 			    <div class="input-group">
 			      <span class="input-group-addon">
-			        <input type="checkbox" aria-label="...">
+			        <input type="checkbox" ng-model="formData.completed"  aria-label="...">
 			      </span>
 			      <input type="text" class="form-control" aria-label="..." ng-model="formData.note" placeholder="Add a new todo note">
 			      <span class="input-group-btn">
 			        <button class="btn btn-primary" type="button" ng-click="createTodo()"><span class="glyphicon glyphicon-plus"></span></button>
 			      </span>
 			    </div><!-- /input-group -->
-			</form>
+				</form>
 				<br/>
 			    <table class="table table-hover">
 				  <tr ng-repeat="todo in todos | filter:query | orderBy:'completed'">
@@ -61,7 +62,7 @@
 						<div class="col-lg-11">
 							<div class="checkbox">
 							    <label>
-							      <input type="checkbox" ng-model="todo.completed"> {{todo.note}}
+							      <input type="checkbox" ng-model="todo.completed" ng-click="updateCompletedTodo(todo)"> {{todo.note}} 
 							    </label>
 							</div>
 						</div>
@@ -72,7 +73,8 @@
 				  	</td>
 				  </tr>
 				</table>
-			</div><!-- /.col-lg-6 -->
+
+			</div><!-- /.col-lg-12 -->
 		  </div>
 		</div>
 	</div>

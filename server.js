@@ -54,7 +54,7 @@ var Todo = require('./models/ToDo.js');
         // create a todo, information comes from AJAX request from Angular
         Todo.create({
             note : req.body.note,
-            completed : false
+            completed : req.body.completed
         }, function(err, todo) {
             if (err)
                 res.send(err);
@@ -70,10 +70,19 @@ var Todo = require('./models/ToDo.js');
 
     //update todo
     app.put('/api/todos/:todo_id', function(req, res){
-    	Todo.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+        console.log("Calling update");
+        Todo.findByIdAndUpdate(
+            req.body._id, 
+            {completed:req.body.completed}, function (err, post) {
 		    if (err) return next(err);
-		    res.json(post);
+		    // get and return all the todos after you create another
+            Todo.find(function(err, todos) {
+                if (err)
+                    res.send(err)
+                res.json(todos);
+            });
 		});
+        
     });
 
     // delete a todo
