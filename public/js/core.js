@@ -1,4 +1,6 @@
-var myTodo = angular.module('myTodo', []);
+angular.module('myTodo', ['myTodoController', 'myTodoService']);
+
+/*var myTodo = angular.module('myTodo', []);
 function mainController($scope, $http) {
     $scope.formData = {};
     // when landing on the page, get all todos and show them
@@ -47,4 +49,4 @@ function mainController($scope, $http) {
                 console.log('Error: ' + data);
             });
     };
-}
+}*/

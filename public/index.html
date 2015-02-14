@@ -14,8 +14,10 @@
 	</style>
 	<!-- SPELLS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
-    <script src="core.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script><!-- load angular 1.2.4 -->
+    <script src="js/controllers/main.js"></script> <!-- load up our controller -->
+    <script src="js/services/todos.js"></script> <!-- load up our controller -->
+    <script src="js/core.js"></script>
 
 </head>
 <body ng-controller="mainController">
@@ -49,7 +51,8 @@
 			      <span class="input-group-addon">
 			        <input type="checkbox" ng-model="formData.completed"  aria-label="...">
 			      </span>
-			      <input type="text" class="form-control" aria-label="..." ng-model="formData.note" placeholder="Add a new todo note">
+			      <input type="text" class="form-control input-md text-center" aria-label="..." ng-model="formData.note" 
+			      placeholder="Add a new todo note">
 			      <span class="input-group-btn">
 			        <button class="btn btn-primary" type="button" ng-click="createTodo()"><span class="glyphicon glyphicon-plus"></span></button>
 			      </span>
@@ -57,7 +60,7 @@
 				</form>
 				<br/>
 			    <table class="table table-hover">
-				  <tr ng-repeat="todo in todos | filter:query | orderBy:'completed'">
+				  <tr ng-repeat="todo in todos | orderBy:'completed' | filter:query ">
 				  	<td>
 						<div class="col-lg-11">
 							<div class="checkbox">
